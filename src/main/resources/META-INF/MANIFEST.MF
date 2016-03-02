@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: build/classes/main/*
+Main-Class: com.scmspain.bigdata.hadoop.Fangshi
+
