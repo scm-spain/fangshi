@@ -5,24 +5,32 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import java.util.TimeZone;
 
 public class ArgumentsTest
 {
-    private static final String ARG_VALUE = "test";
+    private static final String ARG_DATE_FORMAT = "date_format";
+    private static final String ARG_IMPORT_SECONDS = "-300";
+    private static final String ARG_PARTITION_FORMAT = "partition_format";
+    private static final String ARG_TIMEZONE = "UTC";
+    private static final String ARG_STATIC_HOURS = "2";
+
     Arguments arguments;
 
     @Before
     public void setUp() throws Exception
     {
-        String[] args = new String[8];
+        String[] args = new String[10];
         args[0] = "--import-seconds";
-        args[1] = "1";
+        args[1] = ARG_IMPORT_SECONDS;
         args[2] = "--date-format";
-        args[3] = ARG_VALUE;
+        args[3] = ARG_DATE_FORMAT;
         args[4] = "--partition-format";
-        args[5] = ARG_VALUE;
+        args[5] = ARG_PARTITION_FORMAT;
         args[6] = "--timezone";
-        args[7] = ARG_VALUE;
+        args[7] = ARG_TIMEZONE;
+        args[8] = "--static-hours";
+        args[9] = ARG_STATIC_HOURS;
 
         arguments = new Arguments(args);
     }
@@ -37,8 +45,8 @@ public class ArgumentsTest
     public void testGetArgSecondsToImport() throws Exception
     {
         assertEquals(
-                "Get secods to import argument",
-                Integer.valueOf("1"),
+                "Get seconds to import argument",
+                Integer.valueOf(ARG_IMPORT_SECONDS),
                 arguments.getArgSecondsToImport()
         );
     }
@@ -48,7 +56,7 @@ public class ArgumentsTest
     {
         assertEquals(
                 "Get the date format provided",
-                ARG_VALUE,
+                ARG_DATE_FORMAT,
                 arguments.getArgDateFormat()
         );
     }
@@ -58,7 +66,7 @@ public class ArgumentsTest
     {
         assertEquals(
                 "Get the partition key format provided",
-                ARG_VALUE,
+                ARG_PARTITION_FORMAT,
                 arguments.getArgPartitionKeyFormat()
         );
     }
@@ -68,8 +76,18 @@ public class ArgumentsTest
     {
         assertEquals(
                 "Get the timezone provided",
-                ARG_VALUE,
+                TimeZone.getTimeZone(ARG_TIMEZONE),
                 arguments.getArgTimezone()
+        );
+    }
+
+    @Test
+    public void testGetArgStaticHours() throws Exception
+    {
+        assertEquals(
+                "Get the static hours to import",
+                Integer.valueOf(ARG_STATIC_HOURS),
+                arguments.getArgStaticHoursToImport()
         );
     }
 }

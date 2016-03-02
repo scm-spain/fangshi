@@ -10,4 +10,6 @@ public interface CalendarInterface
     CalendarInterface addSeconds(Integer seconds);
 
     Date getTime();
+
+    String getHour();
 }

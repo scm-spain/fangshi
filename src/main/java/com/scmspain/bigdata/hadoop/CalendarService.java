@@ -34,4 +34,9 @@ public class CalendarService implements CalendarInterface
     {
         return calendar.getTime();
     }
+
+    public String getHour()
+    {
+        return String.valueOf(calendar.get(Calendar.HOUR_OF_DAY));
+    }
 }
