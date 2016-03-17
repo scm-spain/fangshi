@@ -1,4 +1,4 @@
-group 'bi-hadoop-incremental-import-dates'
+group 'com.scmspain.bigdata.hadoop'
 
 apply plugin: 'java'
 apply plugin: 'application'
@@ -31,7 +31,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Generate dates to perfom an incremental import using Oozie + Sqoop',
+        attributes 'Implementation-Title': 'Fangshi: Generate dates to perfom an incremental import using Oozie + Sqoop',
                 'Implementation-Version': project.version,
                 'Main-Class': mainClassName
     }
@@ -39,7 +39,7 @@ jar {
 
 task fatJar(type: Jar) {
     manifest {
-        attributes 'Implementation-Title': 'Generate dates to perfom an incremental import using Oozie + Sqoop',
+        attributes 'Implementation-Title': 'Fangshi: Generate dates to perfom an incremental import using Oozie + Sqoop',
                 'Implementation-Version': project.version,
                 'Main-Class': mainClassName
     }
