@@ -96,6 +96,12 @@ public class GenerateDatesTest
         );
 
         assertEquals(
+                "Static day should be adjusted",
+                "20151124",
+                dates.get(generateDates.getPartitionDayKey().concat("0"))
+        );
+
+        assertEquals(
                 "Static hour should be adjusted",
                 "9",
                 dates.get(generateDates.getPartitionHourKey().concat("0"))

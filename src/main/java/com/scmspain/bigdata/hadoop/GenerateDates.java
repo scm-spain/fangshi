@@ -10,6 +10,7 @@ class GenerateDates
     private static final String PARTITION_KEY_VALUE = "partition_key_value";
     private static final String PARTITION_RANGE_START = "partition_range_start_";
     private static final String PARTITION_RANGE_END = "partition_range_end_";
+    private static final String PARTITION_DAY = "partition_day_";
     private static final String PARTITION_HOUR = "partition_hour_";
     private static final String PARTITION_CURRENT = "current";
 
@@ -66,6 +67,10 @@ class GenerateDates
         if (staticHours > 0) {
             for (int i = 0; i < staticHours; i++) {
                 dates.put(
+                        PARTITION_DAY.concat(String.valueOf(i)),
+                        dateFormatPartition.format(time_ago.getTime())
+                );
+                dates.put(
                         PARTITION_HOUR.concat(String.valueOf(i)),
                         time_ago.getHour()
                 );
@@ -80,10 +85,16 @@ class GenerateDates
                 );
 
                 time_ago.addSeconds(HOUR_OFFSET);
+
                 initDate = dateFormatStart.format(time_ago.getTime());
                 endDate = dateFormatEnd.format(time_ago.getTime());
+
             }
 
+            dates.put(
+                    PARTITION_DAY.concat(PARTITION_CURRENT),
+                    dateFormatPartition.format(time_ago.getTime())
+            );
             dates.put(
                     PARTITION_HOUR.concat(PARTITION_CURRENT),
                     time_ago.getHour()
@@ -137,6 +148,11 @@ class GenerateDates
         return PARTITION_HOUR;
     }
 
+    public String getPartitionDayKey()
+    {
+        return PARTITION_DAY;
+    }
+
     public String getPartitionRangeStartCurrentKey()
     {
         return PARTITION_RANGE_START + PARTITION_CURRENT;
@@ -148,5 +164,7 @@ class GenerateDates
     }
 
     public String getPartitionHourCurrentKey() { return PARTITION_HOUR + PARTITION_CURRENT; }
+
+    public String getPartitionDayCurrentKey() { return PARTITION_DAY + PARTITION_CURRENT; }
 
 }

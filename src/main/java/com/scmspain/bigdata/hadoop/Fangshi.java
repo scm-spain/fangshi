@@ -38,6 +38,10 @@ public class Fangshi
             if (arguments.getArgStaticHoursToImport() > 0) {
                 for (int i = 0; i < arguments.getArgStaticHoursToImport(); i++) {
                     props.setProperty(
+                            generateDates.getPartitionDayKey() + String.valueOf(i),
+                            dates.get(generateDates.getPartitionDayKey() + String.valueOf(i))
+                    );
+                    props.setProperty(
                             generateDates.getPartitionHourKey() + String.valueOf(i),
                             dates.get(generateDates.getPartitionHourKey() + String.valueOf(i))
                     );
@@ -50,6 +54,10 @@ public class Fangshi
                             dates.get(generateDates.getPartitionRangeEndKey() + String.valueOf(i))
                     );
                 }
+                props.setProperty(
+                        generateDates.getPartitionDayCurrentKey(),
+                        dates.get(generateDates.getPartitionDayCurrentKey())
+                );
                 props.setProperty(
                         generateDates.getPartitionHourCurrentKey(),
                         dates.get(generateDates.getPartitionHourCurrentKey())
